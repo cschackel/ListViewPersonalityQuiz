@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:CharacterApp"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CharacterApp.MainPage">
+
+    <StackLayout>
+        <Frame>
+            <Entry Placeholder="Enter Name" x:Name="name_field"></Entry>
+
+        </Frame>
+
+        <Frame>
+            <Entry Placeholder="Enter Age" x:Name="age_field"></Entry>
+        </Frame>
+
+        <ListView x:Name="questionListView" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                            <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
+                                <Label Text="{Binding .Text}" VerticalTextAlignment="Center" FontSize="Medium" />
+                                
+                            </StackLayout>
+                            <Button Text="True" BackgroundColor="Gray" PropertyChanged="Button_PropertyChanged"  Clicked="True_Button_Clicked"  CommandParameter="{Binding .Text}" />
+                            <Button Text="False" BackgroundColor="Gray"  Clicked="False_Button_Clicked" CommandParameter="{Binding .Text}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Submit" Clicked="List_Submit_Button_Clicked"></Button>
+
+       
+        
+        <Frame>
+        <Label x:Name="mainLabel"
+            Text="" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand">
+            <!--
+            <Label.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwipe"/>
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwipe"/>
+            </Label.GestureRecognizers>
+            -->
+            </Label>
+            </Frame>
+        <!--
+        <Button Text="True" Clicked="OnTrueClick" x:Name="trueBtn"/>
+        <Button Text="False" Clicked="OnFalseClick" x:Name="falseBtn"/>
+        -->
+        <!--
+        <Label Text="Swipe Left for False, Right for True">
+
+            
+
+        </Label>
+        -->
+       
+        <!--<Label x:Name="scoreLabel" Text="{Binding testValue}"/>
+        <Label Text="{Binding Path=currentScore}"
+           FontSize="Large"
+           HorizontalOptions="Center"
+           VerticalOptions="Center">
+        <Label.BindingContext>
+            <local:PageViewModel />
+        </Label.BindingContext>
+    </Label>
+        -->
+        
+    </StackLayout>
+
+</ContentPage>
