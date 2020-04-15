@@ -23,10 +23,10 @@
                     <ViewCell>
                         <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
                             <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
-                                <Label Text="{Binding .Text}" VerticalTextAlignment="Center" FontSize="Medium" />
+                                <Label Text="{Binding .Text}" VerticalTextAlignment="Center" FontSize="Medium"  />
                                 
                             </StackLayout>
-                            <Button Text="True" BackgroundColor="Gray" PropertyChanged="Button_PropertyChanged"  Clicked="True_Button_Clicked"  CommandParameter="{Binding .Text}" />
+                            <Button Text="True" BackgroundColor="Gray"   Clicked="True_Button_Clicked"  CommandParameter="{Binding .Text}" />
                             <Button Text="False" BackgroundColor="Gray"  Clicked="False_Button_Clicked" CommandParameter="{Binding .Text}" />
                         </StackLayout>
                     </ViewCell>
