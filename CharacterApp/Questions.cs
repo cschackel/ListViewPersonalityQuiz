@@ -27,14 +27,14 @@ namespace CharacterApp
             All = new List<Questions>
             {
                 // Part 1. Getting Started with XAML
-                new Questions("Do you prefer diet soda?",
+                new Questions("You want to kill people",
+                                      -5,5),
+                new Questions("Are you a scientist?",
                                       2,-2),
-                new Questions("Have you now,or at any time, been dead?",
-                                      -2,2),
-                new Questions("Do you like Minnesota?",
-                                      3,-3),
-                new Questions("Are you an orphan?",
-                                      -3,3)
+                new Questions("Is your uncle named Ben?",
+                                      5,-5),
+                new Questions("Are you kind of mean?",
+                                      -2,2)
             };
         }
 

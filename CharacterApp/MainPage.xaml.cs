@@ -162,7 +162,7 @@ namespace CharacterApp
             }
         }
         */
-        async private void True_Button_Clicked(object sender, EventArgs e)
+        private void True_Button_Clicked(object sender, EventArgs e)
         {
 
             var b = (Button)sender;
@@ -187,7 +187,7 @@ namespace CharacterApp
 
         }
 
-        async private void False_Button_Clicked(object sender, EventArgs e)
+        private void False_Button_Clicked(object sender, EventArgs e)
         {
             var b = (Button)sender;
             var t = b.CommandParameter;
@@ -208,7 +208,7 @@ namespace CharacterApp
             b.BackgroundColor = Xamarin.Forms.Color.Red;
         }
 
-        private void List_Submit_Button_Clicked(object sender, EventArgs e)
+        private async void List_Submit_Button_Clicked(object sender, EventArgs e)
         {
             for(int i = 0; i < questions.Count; i++)
             {
@@ -270,15 +270,31 @@ namespace CharacterApp
             {
                 if (pvm.currentScore >= c.MinScore && pvm.currentScore <= c.MaxScore)
                 {
-                    mainLabel.Text = "You are " + c.Name;
+                    await displayAPIInfo(c);
+                    
+
+                    //mainLabel.Text = "You are " + c.Name;
                 }
             }
             pvm.currentScore = 0;
+            
+        }
+
+        private async Task displayAPIInfo(Characters c)
+        {
+            var marvelCharacter = await App.MDM.GetCharacterByID(c.MarvelAPIID);
+
+            mainLabel.Text = marvelCharacter.ToString();
         }
 
         async private void Button_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             await DisplayAlert("","Change","OK");
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

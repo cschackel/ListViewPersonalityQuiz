@@ -34,7 +34,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Submit" Clicked="List_Submit_Button_Clicked"></Button>
+        <Button Text="Submit" Clicked="List_Submit_Button_Clicked" ></Button>
 
        
         

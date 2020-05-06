@@ -11,12 +11,16 @@ namespace CharacterApp
 
         public int MaxScore { private set; get; }
 
-        public Characters(string name, int minScore, int maxScore)
+        public int MarvelAPIID { get; set; }
+
+        public Characters(string name, int minScore, int maxScore, int marvelID)
         {
             Name = name;
 
             MinScore = minScore;
             MaxScore = maxScore;
+
+            MarvelAPIID = marvelID;
 
 
         }
@@ -26,10 +30,10 @@ namespace CharacterApp
             All = new List<Characters>
             {
                 // Part 1. Getting Started with XAML
-                new Characters("Teal'c",-100,-6),
-                new Characters("Daniel",-5,-1),
-                new Characters("Sam",0,5),
-                new Characters("Jack",6,100),
+                new Characters("Super-Skrull",-100,-6,1009639),
+                new Characters("Mysterio",-5,-1, 1009464),
+                new Characters("Iron Man",0,5,1009368),
+                new Characters("SpiderMan",6,100, 1009610),
             };
         }
 
