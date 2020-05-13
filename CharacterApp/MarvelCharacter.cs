@@ -9,10 +9,10 @@ namespace CharacterApp
     public class MarvelCharacter
     {
         [JsonProperty(PropertyName = "id")]
-        int ID;
+        public int ID { get; set; }
         [JsonProperty(PropertyName = "name")]
-        string Name;
+        public string Name { get; set; }
         [JsonProperty(PropertyName = "description")]
-        string Description;
+        public string Description { get; set; }
     }
 }

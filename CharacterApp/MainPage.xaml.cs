@@ -173,7 +173,9 @@ namespace CharacterApp
             {
                 if(q.Text.Equals(t))
                 {
+                    DisplayAlert("", "True", "OK");
                     answerArray[i] = true;
+
                 }
                 else
                 {
@@ -197,6 +199,7 @@ namespace CharacterApp
             {
                 if (q.Text.Equals(t))
                 {
+                    //DisplayAlert("","False","OK");
                     answerArray[i] = false;
                 }
                 else
@@ -210,6 +213,7 @@ namespace CharacterApp
 
         private async void List_Submit_Button_Clicked(object sender, EventArgs e)
         {
+            pvm.currentScore = 0;
             for(int i = 0; i < questions.Count; i++)
             {
                 if(answerArray[i]==true)
@@ -234,7 +238,7 @@ namespace CharacterApp
                     }
                     else if (age > 40)
                     {
-                        pvm.currentScore += 3;
+                        pvm.currentScore -= 3;
                     }
                     else if (age > 30)
                     {
@@ -242,49 +246,54 @@ namespace CharacterApp
                     }
                     else if (age > 20)
                     {
-                        pvm.currentScore += 2;
+                        pvm.currentScore += 7;
                     }
                 }
             }
             if (name_field.Text != null && name_field.Text != "")
             {
-                if (name_field.Text.First() == 'T' || name_field.Text.Contains("'"))
+                if (name_field.Text.First() == 'S' || name_field.Text.Contains("'"))
                 {
                     pvm.currentScore -= 10;
                 }
-                else if (name_field.Text.First() == 'S')
+                else if (name_field.Text.First() == 'T')
                 {
                     pvm.currentScore += 1;
                 }
-                else if (name_field.Text.First() == 'D')
+                else if (name_field.Text.First() == 'Q')
                 {
                     pvm.currentScore -= 3;
                 }
-                else if (name_field.Text.First() == 'J')
+                else if (name_field.Text.First() == 'P')
                 {
                     pvm.currentScore += 3;
                 }
             }
 
+
+
             foreach (Characters c in characters)
             {
                 if (pvm.currentScore >= c.MinScore && pvm.currentScore <= c.MaxScore)
                 {
+                    await DisplayAlert(""+pvm.currentScore, c.Name + c.MarvelAPIID, "OK");
                     await displayAPIInfo(c);
                     
+                    break;
 
                     //mainLabel.Text = "You are " + c.Name;
                 }
             }
-            pvm.currentScore = 0;
+
             
         }
 
         private async Task displayAPIInfo(Characters c)
         {
-            var marvelCharacter = await App.MDM.GetCharacterByID(c.MarvelAPIID);
+            MarvelCharacter marvelCharacter = await App.MDM.GetCharacterByID(c.MarvelAPIID);
 
-            mainLabel.Text = marvelCharacter.ToString();
+            mainLabel.Text = "You are " + marvelCharacter.Name;
+            mainDesc.Text = marvelCharacter.Description;
         }
 
         async private void Button_PropertyChanged(object sender, PropertyChangedEventArgs e)

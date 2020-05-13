@@ -33,11 +33,14 @@ namespace CharacterApp
         {
 
             var ts = Guid.NewGuid().ToString();
+            Debug.WriteLine(ts);
+            IHashService tempHash = _hashService;
+
             var hash = _hashService.CreateMd5Hash(ts + _API_PRIVATE_KEY + _API_PUBLIC_KEY);
             MarCharacter = new MarvelCharacter();
 
                 var uri =
-                $@"http://gateway.marvel.com/v1/public/characters/{marvelID}&apikey={_API_PUBLIC_KEY}&hash={hash}&ts={ts}";
+                $@"https://gateway.marvel.com/v1/public/characters/{marvelID}?apikey={_API_PUBLIC_KEY}&hash={hash}&ts={ts}";
             /*
             try
             {
@@ -61,13 +64,13 @@ namespace CharacterApp
             */
 
             //var client = new HttpClient();
-            var response = await _client.GetStringAsync(uri);
+            var response2 = await _client.GetStringAsync(uri);
 
-            var responseObject = JObject.Parse(response);
+            var responseObject = JObject.Parse(response2);
 
             List<MarvelCharacter> temp =  (List<MarvelCharacter>)await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<IEnumerable<MarvelCharacter>>(responseObject["data"]["results"].ToString()));
 
-            
+            Debug.WriteLine(temp.Count);
 
             return temp[0];
         }
